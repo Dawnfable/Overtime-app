@@ -2,4 +2,4 @@
   Post.create!(date: Date.today, Rationale: "#{post} rationale content")
 end
 
-puts "100 posts have been created"
+puts "100 posts created"
