@@ -57,7 +57,7 @@ describe 'navigate' do
       delete_user = FactoryGirl.create(:user)
       login_as(delete_user, :scope => :user)
 
-      post_to_delete = Post.create(date: Date.today, Rationale: 'asdfasdf', user_id: delete_user.id)
+      post_to_delete = Post.create(date: Date.today, Rationale: 'asdfasdf', user_id: delete_user.id, ocertime_request: 1.5)
 
       visit posts_path
 
@@ -77,14 +77,16 @@ describe 'navigate' do
     it 'can be created from new form page' do
       fill_in 'post[date]', with: Date.today
       fill_in 'post[Rationale]', with: "Some rationale"
-      click_on "Save"
+      fill_in 'post[ocertime_request]', with: 4.5
+      
 
-      expect(page).to have_content("Some rationale")
+      expect { click_on "Save" }.to change(Post, :count).by(1)
     end
 
     it 'will have a user associated it' do
       fill_in 'post[date]', with: Date.today
       fill_in 'post[Rationale]', with: "User Association"
+      fill_in 'post[ocertime_request]', with: 4.5
       click_on "Save"
 
       expect(User.last.posts.last.Rationale).to eq("User Association")
