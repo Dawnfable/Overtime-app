@@ -4,7 +4,7 @@ describe 'navigate' do
   let(:user) { FactoryGirl.create(:user) }
 
   let(:post) do
-    Post.create(date: Date.today, Rationale: "Rationale", user_id: user.id)
+    Post.create(date: Date.today, Rationale: "Rationale", user_id: user.id, ocertime_request: 3.6)
   end
 
   before do
