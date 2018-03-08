@@ -16,7 +16,7 @@ namespace :notification do
   end
 
   desc "Sends mail notification to managers each day to inform of pending overtime requeste"
-  task manager_email.: :environment do
+  task manager_email: :environment do
     submitted_posts = Post.submitted
     admin_users = AdminUsers.all
 
